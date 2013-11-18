@@ -1,0 +1,10 @@
+{% extends 'template.html' %}
+{%  block content %}
+    <div class="row">
+        {% for band in bands %}
+            <div class="span6">
+                <a href="{{ band.get('name') }}_page"><h3> {{ band.get('name') }} </h3></a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

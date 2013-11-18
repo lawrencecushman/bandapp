@@ -1,0 +1,118 @@
+<?xml-stylesheet type="text/xsl" href="bandHTMLStylesheet.xsl"?>
+<Bands>
+    <Band name="Rush" label="Roadrunner">
+		<Genre>Progressive Rock</Genre>
+		<Genre>Hard Rock</Genre>
+		<Performer instrument="Guitar" join-date="01-03-1971">Alex Lifeson</Performer>
+		<Performer instrument="Vocals" join-date="01-03-1971">Geddy Lee</Performer>
+		<Performer instrument="Drums" join-date="01-03-1971">Neil Peart</Performer>
+		<Hometown>
+			<Country>Canada</Country>
+			<StateOrProvince>Ontario</StateOrProvince>
+			<City>Toronto</City>
+		</Hometown>
+		<Album title="Permanent Waves">
+			<ReleaseDate>1988-02-24</ReleaseDate>
+			<Song songID="s2378461" title="The Spirit of Radio" length="4:56"/>
+			<Song songID="s2378462" title="Freewill" length="5:24"/>
+			<Song songID="s2378463" title="Jacob's Ladder" length="7:26"/>
+			<Song songID="s2378464" title="Entre Nous" length="4:36"/>
+			<Song songID="s2378465" title="Different Strings" length="3:48"/>
+		</Album>
+        <Album title="Permanent Waves">
+			<ReleaseDate>1988-02-24</ReleaseDate>
+			<Song songID="s2378461" title="The Spirit of Radio" length="4:56"/>
+			<Song songID="s2378462" title="Freewill" length="5:24"/>
+			<Song songID="s2378463" title="Jacob's Ladder" length="7:26"/>
+			<Song songID="s2378464" title="Entre Nous" length="4:36"/>
+			<Song songID="s2378465" title="Different Strings" length="3:48"/>
+		</Album>
+        <Album title="Permanent Waves">
+			<ReleaseDate>1988-02-24</ReleaseDate>
+			<Song songID="s2378461" title="The Spirit of Radio" length="4:56"/>
+			<Song songID="s2378462" title="Freewill" length="5:24"/>
+			<Song songID="s2378463" title="Jacob's Ladder" length="7:26"/>
+			<Song songID="s2378464" title="Entre Nous" length="4:36"/>
+			<Song songID="s2378465" title="Different Strings" length="3:48"/>
+		</Album>
+		<Tour name="The Time Machine Tour">
+			<Show venue="The Pavillion">
+				<Country>US</Country>
+				<StateOrProvince>New Mexico</StateOrProvince>
+				<City>Alburquerque</City>
+				<SetList>
+				    <SetSong refID="s2378461"/>
+					<SetSong refID="s2378462"/>
+					<SetSong refID="s2378463"/>
+					<SetSong refID="s2378464"/>
+				</SetList>
+			</Show>
+			<Show venue="Sarnia Bayfest">
+				<Country>Canada</Country>
+				<StateOrProvince>Ontario</StateOrProvince>
+				<City>Sarnia</City>
+			</Show>
+		</Tour>
+	<Performer instrument="Badass" join-date="01-03-1979">superuser Ten</Performer></Band>
+	
+	<Band name="Queens of the Stone Age" label="Matador Records">
+		<Genre>Alternative Rock</Genre>
+		<Genre>Stoner Rock</Genre>
+		<Performer instrument="Vocals" join-date="02-13-1996">Josh Homme</Performer>
+		<Performer instrument="Guitar" join-date="02-13-1996">Troy Van Leeuwen</Performer>
+		<Performer instrument="Keyboard" join-date="02-13-1996">Dean Fertita</Performer>
+		<Performer instrument="Bass" join-date="02-13-1996">Michael Shuman</Performer>
+		<Performer instrument="Drums" join-date="02-13-1996">Jon Theodore</Performer>
+		<Hometown>
+			<Country>United States</Country>
+			<StateOrProvince>California</StateOrProvince>
+			<City>Palm Desert</City>
+		</Hometown>
+		<Album title="Queens of the Stone Age">
+			<ReleaseDate>1998-02-24</ReleaseDate>
+			<Song songID="s2378222" title="Regular John" length="3:27"/>
+			<Song songID="s2378223" title="Avon" length="8:24"/>
+			<Song songID="s2378224" title="If Only" length="6:16"/>
+		</Album>
+	</Band>
+	
+	<Band name="Daft Punk" label="Virgin">
+		<Genre>House</Genre>
+		<Performer instrument="DJ" join-date="01-23-1993">Thomas Bangalter</Performer>
+		<Performer instrument="DJ" join-date="01-23-1993">Guy-Manuel de Homem-Christo</Performer>
+		<Hometown>
+			<Country>France</Country>
+			<StateOrProvince/>
+			<City>Paris</City>
+		</Hometown>
+		<Album title="Discovery">
+			<ReleaseDate>2001-03-21</ReleaseDate>
+			<Song songID="s2726627" title="One More Time" length="5:20"/>
+			<Song songID="s2726628" title="Aerodynamic" length="3:27"/>
+			<Song songID="s2726629" title="Digital Love" length="4:58"/>
+			<Song songID="s2726630" title="Harder, Better, Faster, Stronger" length="3:45"/>
+			<Song songID="s2726631" title="Crescendolls" length="3:13"/>
+		</Album>
+	</Band>
+	
+	<Band name="Boston" label="Epic">
+		<Genre>Rock</Genre>
+		<Genre>Hard Rock</Genre>
+		<Performer instrument="Guitar" join-date="01-23-1976">Alex Lifeson</Performer>
+		<Performer instrument="Vocals" join-date="06-13-1979">Geddy Lee</Performer>
+		<Performer instrument="Drums" join-date="08-26-1988">Neil Peart</Performer>
+		<Hometown>
+			<Country>United States</Country>
+			<StateOrProvince>Massachusets</StateOrProvince>
+			<City>Boston</City>
+		</Hometown>
+		<Album title="Don't Look Back">
+			<ReleaseDate>1978-08-02</ReleaseDate>
+			<Song songID="s1817262" title="Don't Look Back" length="5:57"/>
+			<Song songID="s1817263" title="The Journey" length="1:46"/>
+			<Song songID="s1817264" title="It's Easy" length="4:26"/>
+			<Song songID="s1817265" title="A Man I'll Never Give" length="6:37"/>
+			<Song songID="s1817266" title="Feelin' Satisfied" length="4:11"/>
+		</Album>
+	</Band>
+</Bands>

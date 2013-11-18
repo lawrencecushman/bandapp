@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }} - All the Bands</title>
+
+</head>
+<body>
+    <h1>{{ title }}</h1>
+    <p><a href="{{ url_for('destroy_page') }}">Destroy</a></p>
+    <p> Enter your Title:
+    <form action="{{ url_for('handle_data') }}">
+        <input type="text" name="tit">
+        <input type="submit" value="Go">
+    </form></p>
+    <p>
+    <form action="{{ url_for('handle_data') }}">
+        <input type="email" name="email">
+        <input type="submit" value="Go">
+    </form>
+    </p>
+</body>
+</html>

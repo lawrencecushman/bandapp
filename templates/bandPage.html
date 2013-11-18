@@ -1,0 +1,81 @@
+{% extends 'template.html' %}
+{% block content %}
+    <div class="row">
+        <div id="discography" class="span6">
+            <h3>Discography</h3>
+            {% block discog_table %}{% endblock %}
+        </div>
+        <div id="info"class="span5 offset1">
+            <div class="row-fluid">
+                <h3 class="pull-left">Info</h3>
+                <div class="pull-right" >
+                    <form>
+                        <a class="btn" href="#!" id="editpage"><i class="icon-pencil"></i> Edit Page</a>
+                    </form>
+                </div>
+
+            </div>
+            <div id="hometown">
+                <strong>Hometown:</strong>
+                <a href="#!" class="editable editable-disabled" id="city" data-type="text" data-pk="{{title}}" data-url="/infomodify" data-title="Enter city">
+                    <span>{{ bandElement[0].find('Hometown/City').text }}</span></a>,
+                <a href="#!" class="editable editable-disabled" id="province" data-type="text" data-pk="{{title}}" data-url="/infomodify" data-title="Enter province/state">
+                    <span>{{ bandElement[0].find('Hometown/StateOrProvince').text }}</span></a>,
+                <a href="#!" class="editable editable-disabled" id="country" data-type="text" data-pk="{{title}}" data-url="/infomodify" data-title="Enter country">
+                    <span>{{ bandElement[0].find('Hometown/Country').text }}</span></a>
+            </div>
+            <div>
+                <b>Genre:</b>
+                <a href="#!" class="editable editable-disabled" id="genre" data-type="text" data-pk="{{title}}" data-url="/infomodify" data-title="Enter Genre">
+                    {% for genre in bandElement[0].findall("Genre") %}
+                        <span data-genreno="{{ loop.index0 }}">{{ genre.text }}</span>
+                    {%  endfor %}
+                </a>
+            </div>
+            <div>
+            <b>Label: </b>
+                <a href="#!" class="editable editable-disabled" id="label" data-type="text" data-pk="{{title}}" data-url="/infomodify" data-title="Enter city">
+                <span id="label">{{ bandElement[0].get('label') }}</span></a>
+            </div>
+            <h4>Performer{% if  bandElement[0].findall("Performer")|length > 1 %}s{% endif %}</h4>
+                <table id="performers" class="table table-bordered table-condensed">
+                    <thead>
+                    <tr>
+                        <th>Instrument</th>
+                        <th>Name</th>
+                        <th>Join Date</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for member in bandElement[0].findall("Performer") %}
+                            <tr data-performerno="{{ loop.index }}">
+                                <td class="perf-instrument">{{ member.get("instrument") }}</td>
+                                <td class="perf-name">{{ member.text }}</td>
+                                <td class="perf-joindate">{{ member.get("join-date") }}
+                                    <a href="#!" class="performer-delete btn-mini pull-right hide"><i class="icon-remove"></i></a>
+                                </td>
+                            </tr>
+                        {%  endfor %}
+                    </tbody>
+                </table>
+            <div>
+                <div id="form" class="row-fluid hide">
+                    <select name="instrument" class="span4" name="instrument" id="inst">
+                        <option selected>Vocals</option>
+                        <option>Guitar</option>
+                        <option>Bass</option>
+                        <option>Drums</option>
+                        <option>DJ</option>
+                    </select>
+                    <input name="fullname" class="span4" type="text" placeholder="Enter Full Name" />
+                    <input  name="joindate" class="span4" type="text" placeholder="mm/dd/yyyy" />
+                    <div class="pull-right">
+                        <a class="btn btn-primary performer-submit"  href="#!"><i class="icon-plus icon-white"></i> Add</a>
+                        <a class="btn performer-cancel"  href="#!">Cancel</a>
+                    </div>
+                </div>
+                <a class="performer-add btn-mini pull-right hide"  href="#!"><i class="icon-plus"></i> Add Performer</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{{ title }} - SPGB.com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- bootstrap -->
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+    <!-- x-editable (bootstrap 2.3.2 version) -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.4.6/bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet"/>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.4.6/bootstrap-editable/js/bootstrap-editable.min.js"></script>
+
+    <!-- main.js -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/favicon.jpg') }}">
+</head>
+
+<body>
+<header>
+    <div class="navbar">
+        <div class="navbar-inner">
+            <a class="brand" href="/">someprettygreatbands.com</a>
+            <ul class="nav">
+                <li class="{{ ab_active }}"><a href="band_list.html">All Bands</a></li>
+                <li class="{{ w_active }}"><a href="welcome.html">Welcome</a></li>
+                <li class="{{ nm_active }}"><a href="/">Link Two</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <h1 class="page-header">{{ title }}</h1>
+    {% block content %}{% endblock %}
+</div>
+
+</body>
+</html>

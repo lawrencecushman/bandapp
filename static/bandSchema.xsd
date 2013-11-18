@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+
+<!-- Definitions for Simple Elements -->
+<xs:element name="Genre" type="xs:string"/>
+<xs:element name="Country" type="xs:string"/>
+<xs:element name="StateOrProvince" type="xs:string"/>
+<xs:element name="City" type="xs:string"/>
+<xs:element name="ReleaseDate" type="xs:date"/>
+<xs:element name="Hometown" type="Place" />
+	
+<!-- Definitions for Named Types -->
+<xs:complexType name="Place">
+	<xs:sequence>
+		<xs:element ref="Country"/>
+		<xs:element ref="StateOrProvince"/>
+		<xs:element ref="City"/>
+	</xs:sequence>
+</xs:complexType>
+
+
+<!-- Definitions for Complex Elements -->
+<xs:element name="Bands" >
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element ref="Band" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="Band" >
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element ref="Genre" maxOccurs="unbounded" />
+			<xs:element ref="Performer" maxOccurs="unbounded"/>
+			<xs:element ref="Hometown" minOccurs="0"/>
+			<xs:element ref="Album" maxOccurs="unbounded"/>
+			<xs:element ref="Tour" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="name" type="xs:string" use="required" />
+		<xs:attribute name="label" type="xs:string" use="optional" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="Performer" >
+	<xs:complexType>
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="instrument" type="xs:string" use="required" />
+                <xs:attribute name="join-date" type="xs:string"  />
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="Album">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element ref="ReleaseDate" minOccurs="0"/>
+			<xs:element ref="Song" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="title" type="xs:string" use="required" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="Song" >
+	<xs:complexType>
+		<xs:attribute name="songID" type="xs:ID" use="required"/>
+		<xs:attribute name="title" type="xs:string" use="required"/>
+		<xs:attribute name="length" type="xs:string"/>
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="Tour" >
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element ref="Show" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="name" type="xs:string" />
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="Show" >
+	<xs:complexType>
+		<xs:complexContent>
+			<xs:extension base="Place">
+				<xs:sequence>
+					<xs:element ref="SetList" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="venue" type="xs:string" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="SetList">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element ref="SetSong" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="SetSong">
+	<xs:complexType>
+		<xs:attribute name="refID" type="xs:IDREF" />
+	</xs:complexType>
+</xs:element>
+
+</xs:schema>

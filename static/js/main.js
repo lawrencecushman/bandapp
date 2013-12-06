@@ -56,11 +56,13 @@ $(document).ready(function() {
             $('#form').slideUp(400,clearPerformerForm);
             $('#addAlbum').fadeOut();
             $('#albumForm').slideUp();
+            $('#deleteBand').slideUp();
             $('.performer-add').fadeOut();
             $('.song-add').fadeOut();
             $('.song-form').slideUp();
         }
         else{
+            $('#deleteBand').slideDown();
             $('.performer-add').fadeIn();
             $('.song-add').fadeIn();
             $('#addAlbum').fadeIn();

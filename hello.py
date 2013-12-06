@@ -173,5 +173,12 @@ def add_band():
     xc.add_band(band = request.form['band'])
     return band_page(band = request.form['band'])
 
+
+@app.route('/deleteBand', methods=['POST'])
+def delete_band():
+    print 'deleting band', request.form['band']
+    xc.delete_band(band = request.form['band'])
+    return band_list()
+
 if __name__ == '__main__':
     app.run()

@@ -1,3 +1,4 @@
+from uuid import uuid1
 from lxml import etree
 from lxml.etree import XMLSyntaxError
 
@@ -21,7 +22,7 @@ def getAllBands():
         return bands
     # Catch a general exception.
     except Exception, e:
-        print "Error:", type(e), ": ",e.message
+        print "Error:", type(e), ": ", e.message
         return e.message
 
 
@@ -29,11 +30,11 @@ def getBand(band):
     try:
         tree = etree.parse('static/bands.xml')
         bands = tree.getroot() #returns 'Bands' element, which is a list-like object
-        bandElement =  bands.xpath(str.format('Band[@name="{}"]',band)) #get specific band
+        bandElement = bands.xpath(str.format('Band[@name="{}"]', band)) #get specific band
         return bandElement
     # Catch a general exception.
     except Exception, e:
-        print "Error:", type(e), ": ",e.message
+        print "Error:", type(e), ": ", e.message
         return e.message
 
 
@@ -41,23 +42,23 @@ def createBand(band):
     try:
         tree = etree.parse('static/bands.xml')
         bands = tree.getroot() #returns 'Bands' element, which is a list-like object
-        bandElement =  bands.xpath(str.format('Band[@name="{}"]',band)) #get specific band
+        bandElement = bands.xpath(str.format('Band[@name="{}"]', band)) #get specific band
         return bandElement
     # Catch a general exception.
     except Exception, e:
-        print "Error:", type(e), ": ",e.message
+        print "Error:", type(e), ": ", e.message
         return e.message
 
 
 def addmember(band, instrument, fullname, joindate):
     try:
-        parser  = etree.XMLParser(remove_blank_text=True)  # deals with whitespace
+        parser = etree.XMLParser(remove_blank_text=True)  # deals with whitespace
 
         # parse into a tree
-        tree = etree.parse(source='static/bands.xml',parser=parser)
+        tree = etree.parse(source='static/bands.xml', parser=parser)
 
         # The band to insert the performer into
-        bandEmt = tree.find(str.format('/Band[@name="{}"]',band))
+        bandEmt = tree.find(str.format('/Band[@name="{}"]', band))
 
         # build the new Performer
         a = {'instrument': instrument, 'join-date': joindate}  # create attributes
@@ -71,28 +72,29 @@ def addmember(band, instrument, fullname, joindate):
         print etree.tostring(tree, pretty_print=True)
         return "looking good"
     except Exception, e:
-        print "Error:", type(e), ": ",e.message
+        print "Error:", type(e), ": ", e.message
         return e.message
 
 
 #todo: Refactor using this
-def getTree() :
+def getTree():
     try:
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse('static/bands.xml')
         return tree
     except Exception, e:
-        print "Error:", type(e), ": ",e.message
+        print "Error:", type(e), ": ", e.message
         return e
 
 
-def writeTree(tree) :
+def writeTree(tree):
     tree.write('static/bands.xml', pretty_print=True)
     print etree.tostring(tree, pretty_print=True)
     return 200
 
+
 def lxmlFindBand(band, tree):
-    bandEmt = tree.find(str.format('/Band[@name="{}"]',band))
+    bandEmt = tree.find(str.format('/Band[@name="{}"]', band))
     return bandEmt
 
 
@@ -104,7 +106,7 @@ def deletePerformer(band, performerno):
     bandEmt = lxmlFindBand(band, tree)
 
     # Find the performer
-    performer = bandEmt.find(str.format("Performer[{}]",performerno))
+    performer = bandEmt.find(str.format("Performer[{}]", performerno))
     bandEmt.remove(performer)
     writeTree(tree)
     return 200
@@ -174,11 +176,11 @@ def deleteSong(band, album, songno):
     bandEmt = lxmlFindBand(band, tree)
 
     #find the album
-    albumEmt = bandEmt.find(str.format('Album[@title="{}"]',album))
-    print 'AE: ', album,'?=', albumEmt
+    albumEmt = bandEmt.find(str.format('Album[@title="{}"]', album))
+    print 'AE: ', album, '?=', albumEmt
 
     # Find the song
-    song = albumEmt.find(str.format("Song[{}]",songno))
+    song = albumEmt.find(str.format("Song[{}]", songno))
     albumEmt.remove(song)
     writeTree(tree)
     return 200
@@ -191,12 +193,14 @@ def add_song(band, album, songtitle, duration):
 
     # get the album element
     bandEmt = lxmlFindBand(band, tree)
-    albumEmt = bandEmt.find(str.format('Album[@title="{}"]',album))
+    albumEmt = bandEmt.find(str.format('Album[@title="{}"]', album))
+
 
     #build the song element
-    songID = 's999999'
-    a = {'songID':songID, 'title': songtitle, 'length': duration}
-    songEmt = etree.Element('Song',a)
+    uuid = uuid1()
+    songID = 's'+ str(uuid)
+    a = {'songID': songID, 'title': songtitle, 'length': duration}
+    songEmt = etree.Element('Song', a)
 
     print songEmt
     albumEmt.append(songEmt)
@@ -240,7 +244,7 @@ def delete_album(band, title):
     bandEmt = lxmlFindBand(band, tree)
 
     #find the album
-    albumEmt = bandEmt.find(str.format('Album[@title="{}"]',title))
+    albumEmt = bandEmt.find(str.format('Album[@title="{}"]', title))
 
     #remove the album
     bandEmt.remove(albumEmt)
@@ -256,7 +260,7 @@ def add_band(band):
         return 400
 
     # make the band
-    bandEmt = etree.Element('Band', {'name':band, 'label':''})
+    bandEmt = etree.Element('Band', {'name': band, 'label': ''})
     etree.SubElement(bandEmt, 'Genre')
 
     # make hometown
@@ -271,3 +275,23 @@ def add_band(band):
 
     # Bring 'er home
     writeTree(tree)
+    return 200
+
+
+def delete_band(band):
+    tree = getTree()
+    if type(tree) == Exception:
+        return 400
+
+
+    # get the band element
+    bandEmt = lxmlFindBand(band, tree)
+    print bandEmt
+
+
+    root = tree.getroot()
+    print root.remove(bandEmt)
+
+    # Bring 'er home
+    writeTree(tree)
+    return 200

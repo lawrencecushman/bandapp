@@ -252,5 +252,14 @@ $(document).ready(function() {
         $('#in').show('slide', {direction:'right'});
     });
 
+    $('#deleteBand').on('click', function(){
+        var band = $('.page-header').text();
+        if (confirm('Are you sure you would like to delete the entire band \n "'+band+'"?')){
+            data = {band: band}
+            $.post('/deleteBand', data, function(){
+                window.location = 'band_list.html';
+            });
+        }
+    });
 
 });

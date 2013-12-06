@@ -15,23 +15,23 @@
     <Album title="Permanent Waves">
       <ReleaseDate>1988-02-24</ReleaseDate>
       <Song songID="s2378461" title="The Spirit of Radio" length="4:56"/>
-      <Song length="12:12" songID="s999999" title="Another Song!!!"/>
-      <Song length="12:12" songID="s999999" title="New Song"/>
+      <Song length="12:12" songID="s1812922" title="Another Song!!!"/>
+      <Song length="12:12" songID="s1812923" title="New Song"/>
     </Album>
     <Album title="Another Album Title">
       <ReleaseDate>1988-02-24</ReleaseDate>
-      <Song songID="s2378461" title="The Spirit of Radio" length="4:56"/>
-      <Song songID="s2378462" title="Freewill" length="5:24"/>
-      <Song songID="s2378463" title="Jacob's Ladder" length="7:26"/>
-      <Song songID="s2378464" title="Entre Nous" length="4:36"/>
+      <Song songID="s2378462" title="The Spirit of Radio" length="4:56"/>
+      <Song songID="s2378463" title="Freewill" length="5:24"/>
+      <Song songID="s2378464" title="Jacob's Ladder" length="7:26"/>
+      <Song songID="s2378465" title="Entre Nous" length="4:36"/>
     </Album>
     <Album title="The Last Album">
       <ReleaseDate>1988-02-24</ReleaseDate>
-      <Song songID="s2378461" title="The Spirit of Radio" length="4:56"/>
-      <Song songID="s2378462" title="Freewill" length="5:24"/>
-      <Song songID="s2378463" title="Jacob's Ladder" length="7:26"/>
-      <Song songID="s2378464" title="Entre Nous" length="4:36"/>
-      <Song songID="s2378465" title="Different Strings" length="3:48"/>
+      <Song songID="s2378466" title="The Spirit of Radio" length="4:56"/>
+      <Song songID="s2378467" title="Freewill" length="5:24"/>
+      <Song songID="s2378468" title="Jacob's Ladder" length="7:26"/>
+      <Song songID="s2378469" title="Entre Nous" length="4:36"/>
+      <Song songID="s2378470" title="Different Strings" length="3:48"/>
     </Album>
     <Tour name="The Time Machine Tour">
       <Show venue="The Pavillion">
@@ -39,10 +39,10 @@
         <StateOrProvince>New Mexico</StateOrProvince>
         <City>Alburquerque</City>
         <SetList>
-          <SetSong refID="s2378461"/>
-          <SetSong refID="s2378462"/>
-          <SetSong refID="s2378463"/>
-          <SetSong refID="s2378464"/>
+          <SetSong refID="s2378471"/>
+          <SetSong refID="s2378472"/>
+          <SetSong refID="s2378473"/>
+          <SetSong refID="s2378474"/>
         </SetList>
       </Show>
       <Show venue="Sarnia Bayfest">
@@ -85,8 +85,8 @@
       <Song songID="s2726627" title="One More Time" length="5:20"/>
       <Song songID="s2726628" title="Aerodynamic" length="3:27"/>
       <Song songID="s2726629" title="Digital Love" length="4:58"/>
-      <Song length="10:01" songID="s999999" title="Another"/>
-    <Song length="12:13" songID="s999999" title="New Song"/></Album>
+      <Song length="10:01" songID="s2726630" title="Another"/>
+    <Song length="12:13" songID="s2726631" title="New Song"/></Album>
   </Band>
   <Band name="Boston" label="Epic">
     <Genre>Hard Rock</Genre>

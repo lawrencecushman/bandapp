@@ -5,11 +5,17 @@ $(document).ready(function() {
 
     // make editable things editable
     $('.editable').editable('toggleDisabled');
+    $('.song-delete').tooltip({content: 'Delete song'});
 
     // clear performer form
     function clearPerformerForm(){
         var form = $('#form');
         form.find("select").prop('selectedIndex',0);
+        form.find("input").val('');
+    }
+
+    function clearAlbumForm(){
+        var form = $('#albumForm');
         form.find("input").val('');
     }
 
@@ -47,14 +53,21 @@ $(document).ready(function() {
     // Enable Editing of Band Information and Performers
     $('#editpage').click(function(){
         if (edit) {
-            $('.btn-mini').fadeOut();
             $('#form').slideUp(400,clearPerformerForm);
-            $('.editable').editable('toggleDisabled');
+            $('#addAlbum').fadeOut();
+            $('#albumForm').slideUp();
+            $('.performer-add').fadeOut();
+            $('.song-add').fadeOut();
+            $('.song-form').slideUp();
         }
         else{
-            $('.btn-mini').fadeIn();
-            $('.editable').editable('toggleDisabled');
+            $('.performer-add').fadeIn();
+            $('.song-add').fadeIn();
+            $('#addAlbum').fadeIn();
         }
+        $('.btn-mini').fadeToggle();
+        $('.editable').editable('toggleDisabled');
+        $(this).find('span').toggleClass('hide');
         edit = !edit;
     });
 
@@ -113,8 +126,9 @@ $(document).ready(function() {
                         </tr>');
 
             $.post("/addperformer", data,
-                function(){
+                function(response){
                     $('#info').find('tbody').append(html);
+                    console.log(response);
                     clearPerformerForm();
                 });
 
@@ -131,8 +145,8 @@ $(document).ready(function() {
         $.post("/deletesong", {
             band: $(".page-header").text(),
             album: $(song).closest('.album').data('title'),
-            songno: $(this).closest('tr').data('songno')
-        }, function () {
+            songno: $(this).closest('tr').data('songno'),
+            somethingElse: "Trevor is awesome!!!!"}, function () {
             // grab the siblings to renumber them later
             var tablerows = song.siblings();
 
@@ -185,6 +199,58 @@ $(document).ready(function() {
                     clearSongForm();
                 });
 
+        }).on('click', '.album-delete', function(){
+            album = $(this).closest('.album');
+            title = album.data('title');
+            if (confirm('Delete album "'+ title +'"?')){
+                band = $(".page-header").text();
+                data = {band: band, title: title}
+                $.post('/deleteAlbum', data, function(){
+                    album.fadeOut(album.remove);
+                });
+            }
         });
+
+
+    $('#addAlbum').on('click', function(){
+        var form = $('#albumForm');
+        form.slideDown(function(){
+            form.find('input[name=title]').focus();
+        });
+        $(this).slideUp();
+    });
+
+    $('#albumForm').on('click', '.album-cancel', function(){
+        clearAlbumForm();
+        $('#albumForm').slideUp();
+        $('#addAlbum').slideDown();
+    }).on('click', '.album-submit', function(){
+
+            var form = $('#albumForm');
+            var titleField = form.find("input[name=title]");
+            var dateField = form.find("input[name=releaseDate]");
+            var title = titleField.val();
+            var date = dateField.val();
+
+            console.log(title);
+            if( title == '' || date == ''){
+                return;
+            }
+
+            var band = $(".page-header").text();
+            var data = {title:title, date:date, band:band}
+            $.post("/addalbum", data, function(html){
+                form.after($(html));
+                form.next().slideDown();
+            });
+        });
+
+
+    $('#addband').on('click', function(){
+        $(this).hide();
+        $('#submitband').show();
+        $('#in').show('slide', {direction:'right'});
+    });
+
 
 });

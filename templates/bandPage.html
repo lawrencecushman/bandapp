@@ -2,15 +2,22 @@
 {% block content %}
     <div class="row">
         <div id="discography" class="span6">
-            <h3>Discography</h3>
+            <div  style="position: relative">
+                <h3>Discography</h3>
+                <a id="addAlbum" class="hide" style="position: absolute; bottom: 5px; right: 5em"><i class="icon-plus"></i> Add Album</a>
+            </div>
             {% block discog_table %}{% endblock %}
         </div>
+
         <div id="info"class="span5 offset1">
             <div class="row-fluid">
                 <h3 class="pull-left">Info</h3>
-                <div class="pull-right" >
+                <div class="pull-right">
                     <form>
-                        <a class="btn" href="#!" id="editpage"><i class="icon-pencil"></i> Edit Page</a>
+                        <a class="btn" href="#!" id="editpage">
+                            <span ><i class="icon-pencil"></i> Edit Page</span>
+                            <span class="hide"> Done</span>
+                        </a>
                     </form>
                 </div>
 
@@ -34,7 +41,7 @@
             </div>
             <div>
             <b>Label: </b>
-                <a href="#!" class="editable editable-disabled" id="label" data-type="text" data-pk="{{title}}" data-url="/infomodify" data-title="Enter city">
+                <a href="#!" class="editable editable-disabled" id="label" data-type="text" data-pk="{{title}}" data-url="/infomodify" data-title="Enter Record Label">
                 <span id="label">{{ bandElement[0].get('label') }}</span></a>
             </div>
             <h4>Performer{% if  bandElement[0].findall("Performer")|length > 1 %}s{% endif %}</h4>
@@ -52,7 +59,7 @@
                                 <td class="perf-instrument">{{ member.get("instrument") }}</td>
                                 <td class="perf-name">{{ member.text }}</td>
                                 <td class="perf-joindate">{{ member.get("join-date") }}
-                                    <a href="#!" class="performer-delete btn-mini pull-right hide"><i class="icon-remove"></i></a>
+                                    <a href="#!" class="performer-delete btn-mini pull-right hide" style="margin-left: -10em"><i class="icon-remove"></i></a>
                                 </td>
                             </tr>
                         {%  endfor %}
@@ -68,13 +75,13 @@
                         <option>DJ</option>
                     </select>
                     <input name="fullname" class="span4" type="text" placeholder="Enter Full Name" />
-                    <input  name="joindate" class="span4" type="text" placeholder="mm/dd/yyyy" />
+                    <input  name="joindate" class="span4" type="date" placeholder="Join Date" />
                     <div class="pull-right">
                         <a class="btn btn-primary performer-submit"  href="#!"><i class="icon-plus icon-white"></i> Add</a>
                         <a class="btn performer-cancel"  href="#!">Cancel</a>
                     </div>
                 </div>
-                <a class="performer-add btn-mini pull-right hide"  href="#!"><i class="icon-plus"></i> Add Performer</a>
+                <a class="performer-add pull-right hide"  href="#!"><i class="icon-plus"></i> <small>Add Performer<small></small></a>
             </div>
         </div>
     </div>

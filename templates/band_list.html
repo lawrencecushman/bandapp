@@ -1,10 +1,33 @@
 {% extends 'template.html' %}
 {%  block content %}
-    <div class="row">
+    {% if valid %}
+        <div class="row">
+            <form id="bandForm" action="/addBand" method="post">
+                <div id="in" class="span3 offset7 hide" >
+                    <input name='band' type="text" placeholder="Enter band name"/>
+                </div>
+                <div class="span2 pull-right">
+                    <button class="btn" href="#!" id="addband" type="button">
+                        <i class="icon-pencil"></i> Add Band
+                    </button>
+                    <button class="btn btn-primary hide" href="#!" id="submitband" type="button">
+                        <i class="icon-plus hide"></i> Submit
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="row">
         {% for band in bands %}
             <div class="span6">
-                <a href="{{ band.get('name') }}_page"><h3> {{ band.get('name') }} </h3></a>
+                <h3>
+                    <a href="{{ band.get('name') }}_page" style="margin-left: 2em">{{ band.get('name') }}</a>
+                </h3>
             </div>
         {% endfor %}
-    </div>
+        </div>
+    {% else %}
+        <div>Invalid xml</div>
+    {% endif %}
+
+
 {% endblock %}

@@ -1,4 +1,4 @@
-import os
+import re
 from flask import Flask, render_template, redirect, url_for, request
 import xmlController as xc
 import json
@@ -24,13 +24,12 @@ def welcome():
 def all_bands():
     valid = xc.xmlIsValid('static/bands.xml',
                           'static/bandSchema.xsd')
-    print valid
     bands = xc.getAllBands()
     return render_template('all_bands.html',
                            title='All the Bands!',
-                           valid=valid[0],
+                           valid=valid,
                            bands=bands,
-                           ab_active='active')
+                           ab_active='active'), 200
 
 
 @app.route('/<band>_albums')
@@ -45,20 +44,35 @@ def discography(band):
 def band_list():
     valid = xc.xmlIsValid('static/bands.xml',
                           'static/bandSchema.xsd')
-    print valid
+    print "XML IS VALID :)" if valid else "XML IS INVALID!"
     bands = xc.getAllBands()
+    title = 'All the bands'
+
+    if len(request.args) > 0 :
+        query = request.args['search']
+        regex = re.compile('.*(%s).*'%query)
+        title = 'Results for "%s"' % query
+        ab_active=''
+        bands = [band for band in bands if band.get('name').lower().find(query.lower()) != -1]
+    else:
+        ab_active='active'
     return render_template('band_list.html',
-                           title='All the Bands!',
+                           title=title,
+                           valid=valid,
                            bands=bands,
-                           ab_active='active')
+                           ab_active=ab_active)
 
 
 @app.route('/<band>_page')
 def band_page(band):
+    print 'rendering'
+    valid = xc.xmlIsValid('static/bands.xml',
+                          'static/bandSchema.xsd')
     bandElement = xc.getBand(band)
     return render_template('discog.html',
                            title=band,
-                           bandElement=bandElement)
+                           bandElement=bandElement,
+                           valid = valid)
 
 
 @app.route('/post', methods=['POST'])
@@ -86,7 +100,7 @@ def addperformer():
     instrument = request.form['instrument']
     band = request.form['band']
     message = xc.addmember(band, instrument, fullname, joindate)
-    return "",200
+    return "mike smells",200
 
 
 @app.route('/infomodify', methods=['POST'])
@@ -130,6 +144,34 @@ def add_song():
                 duration=request.form['duration'],
                 album=request.form['album'])
     return "", 200
+
+
+@app.route('/addalbum', methods=['POST'])
+def add_album():
+    xc.add_album(band = request.form['band'],
+                 title = request.form['title'],
+                 date = request.form['date'])
+    band = xc.getBand(request.form['band'])
+    print band
+    print band[0]
+    html = render_template('blankAlbum.html',
+                           album = band[0].find('Album'))
+    return html, 200
+
+
+@app.route('/deleteAlbum', methods=['POST'])
+def delete_album():
+    print 'deleting album'
+    xc.delete_album(band = request.form['band'],
+                    title = request.form['title'])
+    return '', 200
+
+
+@app.route('/addBand', methods=['POST'])
+def add_band():
+    print 'adding band', request.form['band']
+    xc.add_band(band = request.form['band'])
+    return band_page(band = request.form['band'])
 
 if __name__ == '__main__':
     app.run()

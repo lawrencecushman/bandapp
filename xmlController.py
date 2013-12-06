@@ -4,26 +4,14 @@ from lxml.etree import XMLSyntaxError
 
 def xmlIsValid(filepath, schemapath):
     try:
-        with open(schemapath, 'r') as f:
-            schema_root = etree.XML(f.read())
-        schema = etree.XMLSchema(schema_root)
-        xmlparser = etree.XMLParser(schema=schema)
-        with open(filepath, 'r') as f:
-            etree.fromstring(f.read(), xmlparser)
-        return [True,'The xml is valid']
-    except XMLSyntaxError, e:
-        print e.message
-        return [False,e]
-    except IOError, e:
-        print e.message
-        print "FILE: ", filepath
-        print "SCHEMA: ", schemapath
-        return [False,e]
-    except Exception as ex:
-        template = "An exception of type {0} occurred. Arguments:\n{1!r}"
-        message = template.format(type(ex).__name__, ex.args)
-        print message
-        return [False,message]
+        xml_document = etree.parse(filepath)
+        xml_schema = etree.XMLSchema(etree.parse(schemapath))
+        result = xml_schema.validate(xml_document)
+        print xml_schema.error_log
+        return result
+    except Exception, e:
+        print e
+        return False
 
 
 def getAllBands():
@@ -215,3 +203,71 @@ def add_song(band, album, songtitle, duration):
 
     writeTree(tree)
     return 200
+
+
+def add_album(band, title, date):
+    tree = getTree()
+    if type(tree) == Exception:
+        return 400
+
+    # get the band element
+    bandEmt = lxmlFindBand(band, tree)
+
+    # press a fresh album
+    releaseDateEmt = etree.Element('ReleaseDate')
+    releaseDateEmt.text = date
+
+    a = {'title': title}
+    albumEmt = etree.Element('Album', a)
+    albumEmt.append(releaseDateEmt)
+
+    # get insertion point - right after the Hometown
+    hometownEmt = bandEmt.find('Hometown')
+
+    # drop the album after Hometown
+    hometownEmt.addnext(albumEmt)
+
+    # Bring 'er home
+    writeTree(tree)
+    return 200
+
+
+def delete_album(band, title):
+    # Get the DOM and band
+    tree = getTree()
+    if type(tree) is Exception:
+        return 400
+    bandEmt = lxmlFindBand(band, tree)
+
+    #find the album
+    albumEmt = bandEmt.find(str.format('Album[@title="{}"]',title))
+
+    #remove the album
+    bandEmt.remove(albumEmt)
+
+    # finish him!
+    writeTree(tree)
+    return 200
+
+
+def add_band(band):
+    tree = getTree()
+    if type(tree) == Exception:
+        return 400
+
+    # make the band
+    bandEmt = etree.Element('Band', {'name':band, 'label':''})
+    etree.SubElement(bandEmt, 'Genre')
+
+    # make hometown
+    hometownEmt = etree.SubElement(bandEmt, 'Hometown')
+    etree.SubElement(hometownEmt, 'Country')
+    etree.SubElement(hometownEmt, 'StateOrProvince')
+    etree.SubElement(hometownEmt, 'City')
+
+    # throw it in the DOM
+    root = tree.getroot()
+    root.append(bandEmt)
+
+    # Bring 'er home
+    writeTree(tree)

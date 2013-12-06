@@ -2,7 +2,11 @@
 <Bands>
   <Band name="Rush" label="Roadrunner">
     <Genre>Progressive Rock</Genre>
-    <Performer instrument="Guitar" join-date="10-15-2010">John Smith</Performer>
+    <Performer instrument="Guitar" join-date="2010-02-16">John Smith</Performer>
+    <Performer instrument="Vocals" join-date="2010-02-16">Gilbert Fargo</Performer>
+    <Performer instrument="Drums" join-date="2001-02-16">William Bogsby</Performer>
+    <Performer instrument="Vocals" join-date="1982-02-16">hgfjhgfj</Performer>
+    <Performer instrument="Drums" join-date="1999-02-16">AnotherMember</Performer>
     <Hometown>
       <Country>Canada</Country>
       <StateOrProvince>Ontario</StateOrProvince>
@@ -11,10 +15,8 @@
     <Album title="Permanent Waves">
       <ReleaseDate>1988-02-24</ReleaseDate>
       <Song songID="s2378461" title="The Spirit of Radio" length="4:56"/>
-      <Song songID="s2378462" title="Freewill" length="5:24"/>
-      <Song songID="s2378463" title="Jacob's Ladder" length="7:26"/>
-      <Song songID="s2378465" title="Different Strings" length="3:48"/>
-      <Song length="10:16" songID="s999999" title="Another SOng Title"/>
+      <Song length="12:12" songID="s999999" title="Another Song!!!"/>
+      <Song length="12:12" songID="s999999" title="New Song"/>
     </Album>
     <Album title="Another Album Title">
       <ReleaseDate>1988-02-24</ReleaseDate>
@@ -22,7 +24,6 @@
       <Song songID="s2378462" title="Freewill" length="5:24"/>
       <Song songID="s2378463" title="Jacob's Ladder" length="7:26"/>
       <Song songID="s2378464" title="Entre Nous" length="4:36"/>
-      <Song songID="s2378465" title="Different Strings" length="3:48"/>
     </Album>
     <Album title="The Last Album">
       <ReleaseDate>1988-02-24</ReleaseDate>
@@ -53,15 +54,15 @@
   </Band>
   <Band name="Queens of the Stone Age" label="Matador Records">
     <Genre>Alternative Rock</Genre>
-    <Performer instrument="Vocals" join-date="02-13-1996">Josh Homme</Performer>
-    <Performer instrument="Guitar" join-date="02-13-1996">Troy Van Leeuwen</Performer>
-    <Performer instrument="Keyboard" join-date="02-13-1996">Dean Fertita</Performer>
-    <Performer instrument="Bass" join-date="02-13-1996">Michael Shuman</Performer>
-    <Performer instrument="Drums" join-date="02-13-1996">Jon Theodore</Performer>
+    <Performer instrument="Vocals" join-date="1996-02-16">Josh Homme</Performer>
+    <Performer instrument="Guitar" join-date="1996-02-16">Troy Van Leeuwen</Performer>
+    <Performer instrument="Keyboard" join-date="1996-02-16">Dean Fertita</Performer>
+    <Performer instrument="Bass" join-date="1996-02-16">Michael Shuman</Performer>
+    <Performer instrument="Drums" join-date="1996-02-16">Jon Theodore</Performer>
     <Hometown>
       <Country>United States</Country>
       <StateOrProvince>California</StateOrProvince>
-      <City>Palm Desertah</City>
+      <City>Palm Desert</City>
     </Hometown>
     <Album title="Queens of the Stone Age">
       <ReleaseDate>1998-02-24</ReleaseDate>
@@ -72,8 +73,8 @@
   </Band>
   <Band name="Daft Punk" label="Virgin">
     <Genre>House</Genre>
-    <Performer instrument="DJ" join-date="01-23-1993">Thomas Bangalter</Performer>
-    <Performer instrument="DJ" join-date="01-23-1993">Guy-Manuel de Homem-Christo</Performer>
+    <Performer instrument="DJ" join-date="1993-02-16">Thomas Bangalter</Performer>
+    <Performer instrument="DJ" join-date="1993-02-16">Guy-Manuel de Homem-Christo</Performer>
     <Hometown>
       <Country>France</Country>
       <StateOrProvince/>
@@ -85,13 +86,13 @@
       <Song songID="s2726628" title="Aerodynamic" length="3:27"/>
       <Song songID="s2726629" title="Digital Love" length="4:58"/>
       <Song length="10:01" songID="s999999" title="Another"/>
-    </Album>
+    <Song length="12:13" songID="s999999" title="New Song"/></Album>
   </Band>
   <Band name="Boston" label="Epic">
     <Genre>Hard Rock</Genre>
-    <Performer instrument="Guitar" join-date="01-23-1976">Alex Lifeson</Performer>
-    <Performer instrument="Vocals" join-date="06-13-1979">Geddy Lee</Performer>
-    <Performer instrument="Drums" join-date="08-26-1988">Neil Peart</Performer>
+    <Performer instrument="Guitar" join-date="1976-02-16">Alex Lifeson</Performer>
+    <Performer instrument="Vocals" join-date="1979-02-16">Geddy Lee</Performer>
+    <Performer instrument="Drums" join-date="1988-02-16">Neil Peart</Performer>
     <Hometown>
       <Country>United States</Country>
       <StateOrProvince>Massachusets</StateOrProvince>
@@ -106,4 +107,4 @@
       <Song songID="s1817266" title="Feelin' Satisfied" length="4:11"/>
     </Album>
   </Band>
-</Bands>
+<Band label="" name="newBand"><Genre/><Hometown><Country/><StateOrProvince/><City/></Hometown></Band></Bands>

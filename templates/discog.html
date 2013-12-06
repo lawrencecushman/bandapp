@@ -6,10 +6,21 @@
         {{ band }} does not exist
     {% else %}
     <div class="span5">
+        <div id="albumForm" class="row-fluid hide" style="padding-bottom: 1em">
+            <input name="title" class="span4" type="text" placeholder="Album Name" required/>
+            <input  name="releaseDate" class="span4" type="date" placeholder="Release Date" required/>
+            <div class="pull-right">
+                <a class="btn btn-primary album-submit"  href="#!"><i class="icon-plus icon-white"></i> Add</a>
+                <a class="btn album-cancel"  href="#!">Cancel</a>
+            </div>
+        </div>
         {% for album in bandElement[0].findall('Album') %}
             <div class="album" data-title="{{ album.get('title') }}">
                 <div class="row-fluid">
-                    <h4><span class="span5"><em>{{ album.get('title') }}</em></span></h4>
+                    <h4><span class="span5">
+                        <a class="btn-mini hide album-delete" href="#!" style="margin-left: -2.5em"><i class="icon-remove"></i></a>
+                        <em>{{ album.get('title') }}</em>
+                    </span></h4>
                     <div class="span5 offset2"><strong>Release date: </strong>{{ album.find('ReleaseDate').text }}</div>
                 </div>
 
@@ -26,13 +37,13 @@
                                 <td>{{ song.get('title') }}</td>
                                 <td>
                                     {{ song.get('length') }}
-                                    <a class="btn-mini pull-right hide song-delete"  href="#!"><i class="icon-remove"></i></a>
+                                    <a class="btn-mini pull-right hide song-delete" style="margin-left: -10em" href="#!"><i class="icon-remove"></i></a>
                                 </td>
                             </tr>
                         {% endfor %}
                     </tbody>
                 </table>
-                <a class="btn-mini pull-right hide song-add"  href="#!"><i class="icon-plus"></i> Add Song</a>
+                <a class="pull-right hide song-add"  href="#!"><i class="icon-plus"></i> <small>Add Song</small></a>
                 <div class="song-form row-fluid hide">
                     <input name="songtitle" class="span5 offset5" type="text" placeholder="Enter Song Title" />
                     <input  name="duration" class="span2" type="text" placeholder="mmm:ss" />
